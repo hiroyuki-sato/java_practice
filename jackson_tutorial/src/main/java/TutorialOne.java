@@ -11,7 +11,7 @@ import java.io.IOException;
 public class TutorialOne
 {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
 
 
 
@@ -21,6 +21,9 @@ public class TutorialOne
             MyValue value = mapper.readValue("{\"name\":\"Bob\", \"age\":13}", MyValue.class);
 
             System.out.println(value);
+            System.out.println("write");
+            System.out.println(mapper.writeValueAsString(value));
+
         }
         catch (IOException e) {
             e.printStackTrace();
