@@ -6,5 +6,8 @@ public class App {
     public static void main(String[] args) {
         TutorialOne one = new TutorialOne();
         one.execTutorial();
+
+        MySerialize ser = new MySerialize();
+        ser.execute();
     }
 }
