@@ -11,22 +11,21 @@ import java.util.regex.Pattern;
  */
 public class App {
 
+//    private static final Pattern EMBULK_CORE_OR_STANDARDS_IN_GRADLE = Pattern.compile(
+//            "org\\.embulk:embulk-(?:core|standards):([\\d\\.\\+]+)?");
     private static final Pattern EMBULK_CORE_OR_STANDARDS_IN_GRADLE = Pattern.compile(
-            "org\\.embulk:embulk-(?:core|standards):([\\d\\.\\+]+)?",Pattern.MULTILINE);
+            "(org\\.embulk:embulk-(?:core|standards):)([\\d\\.\\+]+)?");
 
     public static void main(String[] args) {
-
-        if( args.length < 1 ){
-            System.out.println("command file");
-            System.exit(1);
-        }
-
         try {
             System.out.println("try to open "+args[0]);
             String content = new String(Files.readAllBytes(Paths.get(args[0])));
-            System.out.println(content);
+//            System.out.println(content);
             Matcher matcher = EMBULK_CORE_OR_STANDARDS_IN_GRADLE.matcher(content.substring(0));
-            System.out.println("result: " + matcher.matches());
+            if( matcher.find() ) {
+                String modifiedData = matcher.replaceAll(matcher.group(1) + "0.8.27");
+                System.out.println(modifiedData);
+            }
 
 //        } catch ( Throwable ex ){
 //            throw(ex);
