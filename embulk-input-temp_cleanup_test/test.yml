@@ -1,6 +1,0 @@
-in:
-  type: temp_cleanup_test
-  columns:
-  - { name: name, type: string }
-out:
-  type: stdout
